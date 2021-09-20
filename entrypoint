@@ -5,14 +5,13 @@ validatorstxt=`/bin/cat /config/validators.txt 2>/dev/null | wc -l`
 
 mkdir -p /config
 
-if [[ "$rippledconfig" -gt "0" && "$validatorstxt" -gt "0" ]]; then
+echo "$rippledconfig"
+if [[ "$rippledconfig" -gt "0" ]]; then
 
     echo "Existing rippled config at host /config/, using them."
 
     /bin/cat /config/rippled.cfg > /etc/opt/ripple/rippled.cfg
-    /bin/cat /config/validators.txt > /etc/opt/ripple/validators.txt
-
 fi
 
 # Start rippled, Passthrough other arguments
-exec /opt/ripple/bin/rippled --net --conf /etc/opt/ripple/rippled.cfg "$@"
+exec /opt/ripple/bin/rippled --net --conf /etc/opt/ripple/rippled.cfg -a

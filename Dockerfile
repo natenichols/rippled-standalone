@@ -6,6 +6,8 @@ RUN export LANGUAGE=C.UTF-8; export LANG=C.UTF-8; export LC_ALL=C.UTF-8; export 
 
 COPY entrypoint /entrypoint.sh
 
+COPY config /config
+
 RUN apt-get update -y && \
     apt-get install apt-transport-https ca-certificates wget gnupg -y && \
     wget -q -O - "https://repos.ripple.com/repos/api/gpg/key/public" | apt-key add - && \
